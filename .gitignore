@@ -4,3 +4,17 @@
 *.jar
 *.war
 *.ear
+
+#Eclipse
+.settings
+.classpath
+.project
+git.properties
+.idea
+*.iml
+target/
+bin/
+classes/
+build/
+.gradle
+out/
