@@ -1,4 +1,4 @@
 activemq-mqtt-to-hdfs
 =====================
 
-ActiveMQ example (MQTT to HDFS) 
+ActiveMQ examples (MQTT to HDFS) 

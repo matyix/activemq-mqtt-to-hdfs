@@ -5,7 +5,6 @@
 *.war
 *.ear
 
-#Eclipse
 .settings
 .classpath
 .project
@@ -18,10 +17,3 @@ classes/
 build/
 .gradle
 out/
-
-
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
