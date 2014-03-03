@@ -11,7 +11,6 @@
 
     <artifactId>queue_consumer</artifactId>
 	<packaging>jar</packaging>
-	  <version>1.0-SNAPSHOT</version>
 	  <name>consumer</name>
 	  <url>http://maven.apache.org</url>
 	  <dependencies>
@@ -31,6 +30,12 @@
 	     <artifactId>activemq-core</artifactId>
 	      <version>5.7.0</version>
 	    </dependency>
+	   
+		<dependency>
+			<groupId>org.apache.qpid</groupId>
+			<artifactId>qpid-amqp-1-0-client-jms</artifactId>
+			<version>0.18</version>
+		</dependency>
 	  </dependencies>
 	  <repositories>
 	    <repository>

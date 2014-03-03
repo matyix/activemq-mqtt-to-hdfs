@@ -8,17 +8,14 @@ import org.apache.commons.cli.Options;
 import org.fusesource.mqtt.client.BlockingConnection;
 import org.fusesource.mqtt.client.MQTT;
 import org.fusesource.mqtt.client.QoS;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class MQTTProducer {
 
-
-    private static final Logger LOG = LoggerFactory.getLogger(MQTTProducer.class);
     private static final int MESSAGE_DELAY_MILLISECONDS = 50;
     private static final int NUM_MESSAGES_TO_BE_SENT = 1000;
-    private static final String DESTINATION_NAME = "audio";
-    private static final String MQTT_HOST = "tcp://localhost:1883";
+    private static final String DESTINATION_NAME = "sensor";
+    private static final String MQTT_HOST = "tcp://0.0.0.0:1883";
 
 
     public static void main(String args[]) {
@@ -54,7 +51,6 @@ public class MQTTProducer {
             String password = commandLine.hasOption("p") ? commandLine.getOptionValue("p") : "admin";
             String destinationName = commandLine.hasOption("d") ? commandLine.getOptionValue("d") : DESTINATION_NAME;
             int numberOfMessages = commandLine.hasOption("n") ? Integer.parseInt(commandLine.getOptionValue("n")) : NUM_MESSAGES_TO_BE_SENT;
-            ;
             int delay = commandLine.hasOption("delay") ? Integer.parseInt(commandLine.getOptionValue("d")) : MESSAGE_DELAY_MILLISECONDS;
 
 
@@ -76,6 +72,7 @@ public class MQTTProducer {
                 int audio = (int) (500 * Math.sin(2*Math.PI * cyclePosition));
                 audio = Math.abs(audio);
                 String payload = "" + audio;
+                System.out.println("Payload :" + payload);
                 connection.publish(destinationName, payload.getBytes(), QoS.AT_LEAST_ONCE, false);
                 if (delay > 0) {
                     Thread.sleep(delay);
@@ -87,13 +84,12 @@ public class MQTTProducer {
                 }
             }
 
-
             // Cleanup
             connection.disconnect();
             ;
 
         } catch (Throwable t) {
-            LOG.error("Error sending message", t);
+            System.out.println("Error sending message:" + t);
         } finally {
             // Cleanup code
             // In general, you should always close producers, consumers,
@@ -104,7 +100,7 @@ public class MQTTProducer {
                 try {
                     connection.disconnect();
                 } catch (Exception e) {
-                    LOG.error("Error closing connection", e);
+                	System.out.println("Error closing connection: "+ e);
                 }
             }
         }
