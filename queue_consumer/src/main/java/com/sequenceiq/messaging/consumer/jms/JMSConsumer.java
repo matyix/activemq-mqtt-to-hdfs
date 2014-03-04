@@ -41,7 +41,7 @@ public class JMSConsumer implements MessageListener
         	connection = createAmqpConnection();
             
             //MessageConsumer consumer = session.createConsumer(session.createTopic("topic://FOO"));
-            connection.start();
+            //connection.start();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             Destination destination = session.createQueue("sensor");
             consumer = session.createConsumer(destination);
@@ -58,7 +58,7 @@ public class JMSConsumer implements MessageListener
     }
     
     public Connection createAmqpConnection() throws Exception {
-        final ConnectionFactoryImpl factory = new ConnectionFactoryImpl("localhost", 1883, "admin", "password");
+        final ConnectionFactoryImpl factory = new ConnectionFactoryImpl("localhost", 1883, "admin", "admin");
         final Connection connection = factory.createConnection();
         connection.start();
         return connection;
